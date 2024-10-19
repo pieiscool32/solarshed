@@ -11,6 +11,7 @@ SCRAPE_DELAY = 600
 battery_percentage_gauge = Gauge('solarshed_battery_percentage', 'Battery %')
 battery_voltage_gauge = Gauge('solarshed_battery_volts', 'Battery Voltage')
 battery_temperature_gauge = Gauge('solarshed_battery_temperature_celsius', 'Battery Temperature')
+battery_capacity_gauge = Gauge('solarshed_battery_amperes', 'Battery Amps')
 
 controller_temperature_gauge = Gauge('solarshed_controller_temperature_celsius', 'Controller Temperature')
 charging_state_gauge = Gauge('solarshed_controller_charging_state', 'Controller Charging State')
@@ -37,6 +38,7 @@ while True:
         battery_percentage_gauge.set(controller.battery_percentage())
         battery_voltage_gauge.set(controller.battery_voltage())
         battery_temperature_gauge.set(controller.battery_temperature())
+        battery_capacity_gauge.set(controller.battery_capacity())
 
         controller_temperature_gauge.set(controller.controller_temperature())
         charging_state_gauge.set(controller.charging_status())
