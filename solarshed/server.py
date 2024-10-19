@@ -23,6 +23,10 @@ solar_voltage_gauge = Gauge('solarshed_solar_volts', 'Solar Voltage')
 solar_current_gauge = Gauge('solarshed_solar_amperes', 'Solar Current')
 solar_power_gauge = Gauge('solarshed_solar_watts', 'Solar Power')
 
+solar_charge_amp_hours_gauge = Gauge('solarshed_charge_amp_hours', 'Charge Amp Hours Today')
+solar_discharge_amp_hours_gauge = Gauge('solarshed_discharge_amp_hours', 'Discharge Amp Hours Today')
+solar_power_generated_gauge = Gauge('solarshed_power_generated', 'Power Generation Today')
+
 # Start up the server to expose the metrics.
 start_http_server(5000)
 
@@ -44,6 +48,10 @@ while True:
         solar_voltage_gauge.set(controller.solar_voltage())
         solar_current_gauge.set(controller.solar_current())
         solar_power_gauge.set(controller.solar_power())
+
+        solar_charge_amp_hours_gauge.set(controller.charging_amp_hours_today())
+        solar_discharge_amp_hours_gauge.set(controller.discharging_amp_hours_today())
+        solar_power_generated_gauge.set(controller.power_generation_today())
 
         time.sleep(SCRAPE_DELAY)
     except:
